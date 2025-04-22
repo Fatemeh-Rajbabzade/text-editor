@@ -36,20 +36,21 @@ public class FileManager {
                     JOptionPane.showMessageDialog(textEditor, "Error saving your file: " + ex.getMessage());  // نمایش پیام خطا
                 }
             }
-        } else {  // اگر currentFile مقدار دارد، مستقیماً روی همان فایل ذخیره می‌شود
+        } else {
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(textEditor.currentFile));
-                textArea.write(writer);  // نوشتن محتوای متن در فایل موجود
+                textArea.write(writer);
                 writer.close();
             }
-            catch (IOException ex) {  // رفع مشکل عدم تعریف ex در بلاک catch
+            catch (IOException ex) {
                 JOptionPane.showMessageDialog(textEditor, "Error saving file: " + ex.getMessage());  // نمایش پیام خطا
             }
         }
     }
 
     public static void newFile(TextEditor textEditor, JTextArea textArea) {
-        textArea.setText("");  // پاک کردن محتوای موجود در JTextArea
-        textEditor.currentFile = null;  // ریست کردن فایل فعلی
+        // پاک کردن محتوای موجود در JTextArea
+        textArea.setText("");
+        textEditor.currentFile = null;  
     }
 }
