@@ -2,7 +2,6 @@ package editor;
 
 import javax.swing.*;
 import java.io.*;
-import java.awt.*;
 
 public class FileManager {
     public static void openFile(TextEditor textEditor, JTextArea textArea) {
@@ -11,29 +10,29 @@ public class FileManager {
             File file = fileChooser.getSelectedFile();
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(file));
-                textArea.read(reader, null);  // خواندن محتویات فایل و نمایش آن در JTextArea
+                textArea.read(reader, null);
                 reader.close();
-                textEditor.currentFile = file;  // ذخیره مسیر فایل در currentFile
+                textEditor.currentFile = file;
             }
             catch (IOException ex) {
-                JOptionPane.showMessageDialog(textEditor, "Error opening file: " + ex.getMessage());  // نمایش پیام خطا
+                JOptionPane.showMessageDialog(textEditor, "Error opening file: " + ex.getMessage());
             }
         }
     }
 
     public static void saveFile(TextEditor textEditor, JTextArea textArea) {
-        if (textEditor.currentFile == null) {  // اگر currentFile مقدار ندارد، کاربر باید مسیر ذخیره را انتخاب کند
+        if (textEditor.currentFile == null) {
             JFileChooser fileChooser = new JFileChooser();
             if (fileChooser.showSaveDialog(textEditor) == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
                 try {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                    textArea.write(writer);  // نوشتن محتوای متن در فایل
+                    textArea.write(writer);
                     writer.close();
-                    textEditor.currentFile = file;  // ذخیره مسیر فایل در currentFile
+                    textEditor.currentFile = file;
                 }
                 catch (IOException ex) {
-                    JOptionPane.showMessageDialog(textEditor, "Error saving your file: " + ex.getMessage());  // نمایش پیام خطا
+                    JOptionPane.showMessageDialog(textEditor, "Error saving your file: " + ex.getMessage());
                 }
             }
         } else {
@@ -43,7 +42,7 @@ public class FileManager {
                 writer.close();
             }
             catch (IOException ex) {
-                JOptionPane.showMessageDialog(textEditor, "Error saving file: " + ex.getMessage());  // نمایش پیام خطا
+                JOptionPane.showMessageDialog(textEditor, "Error saving file: " + ex.getMessage());
             }
         }
     }
@@ -51,6 +50,6 @@ public class FileManager {
     public static void newFile(TextEditor textEditor, JTextArea textArea) {
         // پاک کردن محتوای موجود در JTextArea
         textArea.setText("");
-        textEditor.currentFile = null;  
+        textEditor.currentFile = null;
     }
 }
